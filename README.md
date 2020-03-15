@@ -9,6 +9,7 @@ aliddns by python
 ### 使用方式(群晖DSM补充)
 在`python3 ./aliddns.py RR DomainName Type` 前加上 'export PYTHONIOENCODING=UTF-8'
 ![设置截图](https://github.com/AkitoSilver/aliddns/blob/synology-fix/img/run.png)
+如果使用默认脚本还是出现各种问题请使用aliddns_eng.py
 #### 参数说明
 
 1. RR : 要设置的主机名，你要设置的域名前缀
