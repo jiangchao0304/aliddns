@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+# -*- coding: utf-8 -*- 
 import base64
 import hmac
 import json
@@ -20,8 +20,8 @@ import argparse
 # date: 2020-02-21
 # version: v0.2
 
-aliddnsipv6_ak = "AccessKeyId"
-aliddnsipv6_sk = "Access Key Secret"
+aliddnsipv6_ak = "****"
+aliddnsipv6_sk = "****"
 
 # aliddnsipv6_ttl = "600"
 
@@ -241,10 +241,13 @@ def get_Local_ipv6_address_linux():
     """
     # pageURL = 'https://ip.zxinc.org/ipquery/'
     # pageURL = 'https://ip.sb/'
+    print ("111")
+
     linelist = os.popen(
-        ''' ip -6 addr | grep "inet6.*global" | awk \'{print $2}\' | awk -F"/" \'{print $1}\' ''').readlines()  # 这个返回值是一个list
+        ''' ifconfig  | grep inet6 | grep temporary  | awk \'{print $2}\' | awk -F"/" \'{print $1}\' ''').readlines()  # 这个返回值是一个list
     if linelist:
         content = linelist[0].strip()
+        print (content)
     else:
         return None
     ipv6_pattern = '(([a-f0-9]{1,4}:){7}[a-f0-9]{1,4})'
@@ -265,8 +268,10 @@ def get_ipv4_net():
 
 def get_local_ipv6():
     sysPlatform = sys.platform
+    print(sysPlatform)
+
     ipv6Addr = ""
-    if sysPlatform == "linux":
+    if sysPlatform == "linux"  or sysPlatform == "darwin":
         ipv6Addr = get_Local_ipv6_address_linux()
         print()
     elif sysPlatform == "win32":
